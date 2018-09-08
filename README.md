@@ -1,24 +1,111 @@
-# README
+# GOVUK Frontend in Rails
+Using the GOVUK Frontend in a Rails app.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Install GOVUK-frontend
+```yarn add govuk-frontend```
 
-Things you may want to cover:
+### Config the app to use the GOVUK asset paths
 
-* Ruby version
+Edit config/initalizers/assets.rb
 
-* System dependencies
+Images:
 
-* Configuration
+```ruby
+Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-frontend/assets/images')
+```
 
-* Database creation
+Fonts (if using NTA):
 
-* Database initialization
+```ruby
+Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-frontend/assets/fonts')
+```
 
-* How to run the test suite
+### Add GOVUK to precompile 
 
-* Services (job queues, cache servers, search engines, etc.)
+Edit config/initalizers/assets.rb
 
-* Deployment instructions
+Images:
 
-* ...
+```ruby
+Rails.application.config.assets.precompile += %w( govuk-frontend/assets/images/* )
+```
+
+Fonts (if using NTA font and your app is deployed to a gov.uk domain):
+
+```ruby
+Rails.application.config.assets.precompile += %w( govuk-frontend/assets/fonts/* )
+```
+
+If you are not using NTA make sure you set you fonts in `_settings.scss`
+
+### Stop Rails loading all styles and JS files
+
+We'll load everyting ourselves.
+
+Remove `*= require_tree .` from app/assets/stylesheets/application.css
+
+Remove `//= require_tree .` from app/assets/javascripts/application.js
+
+### Import the GOVUK syles and settings
+
+Create `govuk-frontend.scss` at app/assets/stylesheets
+
+Create `_settings.scss` at app/assets/stylesheets for your settings
+
+Edit govuk-frontend.scss:
+
+```scss
+// We import the GOVUK settings and then override the ones we need to in 
+// our own settings file.
+@import "govuk-frontend/settings/all";
+@import "settings";
+@import "govuk-frontend/tools/all";
+@import "govuk-frontend/helpers/all";
+@import "govuk-frontend/core/all";
+@import "govuk-frontend/objects/all";
+// We are importing all the GOVUK components here, but we could import only 
+// the ones we need.
+@import "govuk-frontend/components/all";
+@import "govuk-frontend/utilities/all";
+@import "govuk-frontend/overrides/all";
+```
+
+Edit _settings.scss:
+
+This is a sensible place to start.
+
+```scss
+// Override any GOVUK settings here
+// use Rails asset helpers
+$govuk-font-url-function: 'font-url';
+$govuk-image-url-function: 'image-url';
+// tell GOVUK to apply base styles to <p> and <a> so we don't have to add the
+// classes
+$govuk-global-styles: true;
+// Disable compatibilty with old GOVUK kits as we do not need it
+$govuk-compatibility-govukfrontendtoolkit: false;
+$govuk-compatibility-govuktemplate: false;
+$govuk-compatibility-govukelements: false;
+```
+
+### Require the GOVUK JS
+ 
+ Add this to app/assets/javascripts/application.js
+ ```
+ //= require govuk-frontend/all 
+ ```
+
+Initialize the JS on your page:
+
+```html
+  <script>
+    window.GOVUKFrontend.initAll()
+  </script>
+```
+ ### Add GOVUK markup
+ Check the docs at [https://github.com/alphagov/govuk-frontend](https://github.com/alphagov/govuk-frontend)
+
+ Or look at the starting point in `app/views/layouts/application.erb` and `app/views/home/index.html.erb`
+
+ ## Deploy
+Make sure your deploy solution can run yarn.
