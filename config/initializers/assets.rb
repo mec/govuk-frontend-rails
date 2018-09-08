@@ -8,7 +8,18 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
+# Add GOVUK image asset path
+Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-frontend/assets/images')
+# Add GOVUK font asset path, remove if not using NTA font
+Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-frontend/assets/fonts')
+
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# Precompile the GOVUK image assets:
+Rails.application.config.assets.precompile += %w( govuk-frontend/assets/images/* )
+
+# Precompile the GOVUK font assets, remove if not using:
+Rails.application.config.assets.precompile += %w( govuk-frontend/assets/fonts/* )
