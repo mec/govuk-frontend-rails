@@ -1,5 +1,15 @@
 # GOVUK Frontend in Rails
-Using the GOVUK Frontend in a Rails app.
+I have a need to do this at work and so I wanted to find the most 'Rails' way to
+get this done. The main goals were:
+
+- keep the dependancy management in package.json
+- load the assets into the asset pipeline
+- keep the config to a minimum and at an appropriate level (the app)
+- allow the styles to be overriden
+
+I am no Rails expert so this was a journey into that for me as well.
+
+Feedback welcome!
 
 ### Install GOVUK-frontend
 ```yarn add govuk-frontend```
@@ -20,7 +30,7 @@ Fonts (if using NTA):
 Rails.application.config.assets.paths << Rails.root.join('node_modules/govuk-frontend/assets/fonts')
 ```
 
-### Add GOVUK to precompile 
+### Add GOVUK to precompile
 
 Edit config/initalizers/assets.rb
 
@@ -55,7 +65,7 @@ Create `_settings.scss` at app/assets/stylesheets for your settings
 Edit govuk-frontend.scss:
 
 ```scss
-// We import the GOVUK settings and then override the ones we need to in 
+// We import the GOVUK settings and then override the ones we need to in
 // our own settings file.
 @import "govuk-frontend/settings/all";
 @import "settings";
@@ -63,7 +73,7 @@ Edit govuk-frontend.scss:
 @import "govuk-frontend/helpers/all";
 @import "govuk-frontend/core/all";
 @import "govuk-frontend/objects/all";
-// We are importing all the GOVUK components here, but we could import only 
+// We are importing all the GOVUK components here, but we could import only
 // the ones we need.
 @import "govuk-frontend/components/all";
 @import "govuk-frontend/utilities/all";
@@ -89,10 +99,10 @@ $govuk-compatibility-govukelements: false;
 ```
 
 ### Require the GOVUK JS
- 
+
  Add this to app/assets/javascripts/application.js
  ```
- //= require govuk-frontend/all 
+ //= require govuk-frontend/all
  ```
 
 Initialize the JS on your page:
