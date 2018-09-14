@@ -1,4 +1,4 @@
-// We import the GOVUK settings and then override the ones we need to in 
+// We import the GOVUK settings and then override the ones we need to in
 // our own settings file.
 @import "govuk-frontend/settings/all";
 @import "settings";
@@ -10,9 +10,38 @@
 @import "govuk-frontend/core/all";
 @import "govuk-frontend/objects/all";
 
-// We are importing all the GOVUK components here, but we could import only 
+// We are importing all the GOVUK components here, but we could import only
 // the ones we need.
 @import "govuk-frontend/components/all";
+
+// These are the individual components, you can just load the ones you
+// want to use
+// @import "back-link/back-link";
+// @import "breadcrumbs/breadcrumbs";
+// @import "button/button";
+// @import "checkboxes/checkboxes";
+// @import "date-input/date-input";
+// @import "details/details";
+// @import "error-message/error-message";
+// @import "error-summary/error-summary";
+// @import "fieldset/fieldset";
+// @import "file-upload/file-upload";
+// @import "footer/footer";
+// @import "hint/hint";
+// @import "header/header";
+// @import "input/input";
+// @import "inset-text/inset-text";
+// @import "label/label";
+// @import "panel/panel";
+// @import "phase-banner/phase-banner";
+// @import "tabs/tabs";
+// @import "tag/tag";
+// @import "radios/radios";
+// @import "select/select";
+// @import "skip-link/skip-link";
+// @import "table/table";
+// @import "textarea/textarea";
+// @import "warning-text/warning-text";
 
 @import "govuk-frontend/utilities/all";
 @import "govuk-frontend/overrides/all";
