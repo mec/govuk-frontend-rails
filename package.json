@@ -2,6 +2,6 @@
   "name": "govuk-frontend-rails",
   "private": true,
   "dependencies": {
-    "govuk-frontend": "^1.3.0"
+    "govuk-frontend": "^2.0.0"
   }
 }
