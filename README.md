@@ -1,4 +1,11 @@
-# GOVUK Frontend in Rails
+# Archived
+Take a look at [this](https://github.com/dxw/dxw_govuk_frontend_rails) to see 
+how to add the GOVUK frontend to Rails with sprockets.
+
+If you want to use webpacker, I would go and look at the excellent [DfE Rails
+template](https://github.com/DFE-Digital/govuk-rails-boilerplate)
+
+## GOVUK Frontend in Rails
 I have a need to do this at work and so I wanted to find the most 'Rails' way to
 get this done. The main goals were:
 
